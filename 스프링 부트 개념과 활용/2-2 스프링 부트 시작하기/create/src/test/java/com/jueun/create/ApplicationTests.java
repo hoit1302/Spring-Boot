@@ -1,10 +1,10 @@
-package com.jueun;
+package com.jueun.create;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CreateApplicationTests {
+class ApplicationTests {
 
     @Test
     void contextLoads() {

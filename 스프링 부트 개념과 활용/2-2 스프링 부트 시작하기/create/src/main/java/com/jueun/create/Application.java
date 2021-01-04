@@ -1,12 +1,12 @@
-package com.jueun;
+package com.jueun.create;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CreateApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(CreateApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
