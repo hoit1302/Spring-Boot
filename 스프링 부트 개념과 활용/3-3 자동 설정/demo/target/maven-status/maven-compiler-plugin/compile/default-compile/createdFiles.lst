@@ -1,2 +1,3 @@
-com\jueun\Holoman.class
 com\jueun\HolomanConfiguration.class
+com\jueun\Holoman.class
+META-INF\spring-autoconfigure-metadata.properties

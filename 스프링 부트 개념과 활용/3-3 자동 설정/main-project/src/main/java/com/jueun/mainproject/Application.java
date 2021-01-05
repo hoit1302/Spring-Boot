@@ -1,0 +1,23 @@
+package com.jueun.mainproject;
+
+import com.jueun.Holoman;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    public Holoman holoman(){
+        Holoman holoman = new Holoman();
+        holoman.setHowLong(50);
+        holoman.setName("jueun2");
+        return holoman;
+    }
+
+}
