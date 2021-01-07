@@ -2,6 +2,7 @@ package com.jueun.demo;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 
@@ -21,7 +22,7 @@ public class Application {
             }
         });
         // app.setBannerMode(Banner.Mode.OFF); // 배너 모드 끄기
-
+        app.setWebApplicationType(WebApplicationType.NONE); // 웹 모드 끄기
         app.run(args);
     }
 
