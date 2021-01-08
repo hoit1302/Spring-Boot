@@ -9,7 +9,7 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
-        app.setWebApplicationType(WebApplicationType.NONE);s
+        app.setWebApplicationType(WebApplicationType.NONE);
         app.run(args);
     }
 
