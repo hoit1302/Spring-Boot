@@ -20,7 +20,7 @@ class ApplicationTests {
     @Test
     void contextLoads() {
         assertThat(environment.getProperty("jueun.name"))
-                .isEqualTo("JUEUN"); // assertThat은 static import 시키기!
+                .isEqualTo("hoit1302"); // assertThat은 static import 시키기!
     }
 
 }
