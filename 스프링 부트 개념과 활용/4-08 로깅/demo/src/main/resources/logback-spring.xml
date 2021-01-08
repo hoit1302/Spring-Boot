@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    <!-- 사내에서 적합한 로그 설정으로 바꿔끼세요! logback-spring.xml 파일 추천 -->
+    <!-- 내가 작성한 클래스들만 DEBUG level로 로깅해줘. -->
+    <logger name="com.jueun.demo" level="DEBUG"/>
+</configuration>
