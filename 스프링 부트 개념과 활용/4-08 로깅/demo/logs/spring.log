@@ -1,0 +1,21 @@
+2021-01-08 22:01:13.710  INFO 20448 --- [main] com.jueun.demo.Application               : Starting Application using Java 1.8.0_261 on DESKTOP-PVGDM98 with PID 20448 (D:\JE\semester4-1\Spring Boot 스터디\스프링 부트 개념과 활용\4-08 로깅\demo\target\classes started by Jueun in D:\JE\semester4-1\Spring Boot 스터디\스프링 부트 개념과 활용\4-08 로깅\demo)
+2021-01-08 22:01:13.714  INFO 20448 --- [main] com.jueun.demo.Application               : The following profiles are active: prod
+2021-01-08 22:01:14.776  INFO 20448 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-08 22:01:14.782  INFO 20448 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-08 22:01:14.784  INFO 20448 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-08 22:01:14.873  INFO 20448 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-08 22:01:14.873  INFO 20448 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1104 ms
+2021-01-08 22:01:15.022  INFO 20448 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-08 22:01:15.190  INFO 20448 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-08 22:01:15.201  INFO 20448 --- [main] com.jueun.demo.Application               : Started Application in 1.959 seconds (JVM running for 3.151)
+2021-01-08 22:01:26.934  INFO 24408 --- [main] com.jueun.demo.Application               : Starting Application using Java 1.8.0_261 on DESKTOP-PVGDM98 with PID 24408 (D:\JE\semester4-1\Spring Boot 스터디\스프링 부트 개념과 활용\4-08 로깅\demo\target\classes started by Jueun in D:\JE\semester4-1\Spring Boot 스터디\스프링 부트 개념과 활용\4-08 로깅\demo)
+2021-01-08 22:01:26.938  INFO 24408 --- [main] com.jueun.demo.Application               : The following profiles are active: prod
+2021-01-08 22:01:27.864  INFO 24408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-08 22:01:27.874  INFO 24408 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-08 22:01:27.875  INFO 24408 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-08 22:01:27.978  INFO 24408 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-08 22:01:27.978  INFO 24408 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 978 ms
+2021-01-08 22:01:28.176  INFO 24408 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-08 22:01:28.394  INFO 24408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-08 22:01:28.407  INFO 24408 --- [main] com.jueun.demo.Application               : Started Application in 2.073 seconds (JVM running for 3.649)
+2021-01-08 22:01:47.112  INFO 24408 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
