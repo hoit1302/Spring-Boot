@@ -11,10 +11,14 @@ public class SampleRunner implements ApplicationRunner {
     @Autowired
     private String hello;
 
+    @Autowired
+    private JueunProperties jueunProperties;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("=====================");
         System.out.println(hello);
+        System.out.println(jueunProperties.getName());
         System.out.println("=====================");
     }
 }
