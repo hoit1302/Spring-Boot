@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = "jueun.name=jueun3") // 3순위로, 재정의하면 오버라이딩된다.
 class ApplicationTests {
 
     @Autowired
@@ -20,7 +20,7 @@ class ApplicationTests {
     @Test
     void contextLoads() {
         assertThat(environment.getProperty("jueun.name"))
-                .isEqualTo("hoit1302"); // assertThat은 static import 시키기!
+                .isEqualTo("jueun3"); // assertThat은 static import 시키기!
     }
 
 }
