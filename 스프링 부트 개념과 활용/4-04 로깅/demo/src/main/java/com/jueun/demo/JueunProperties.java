@@ -1,13 +1,11 @@
 package com.jueun.demo;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.convert.DurationFormat;
-import org.springframework.boot.convert.DurationUnit;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 
 // 원래 @ConfigurationProperties을 사용하려면
 // @EnableConfigurationProperties(JueunProperties.class) 설정해주어야 하지만
@@ -15,13 +13,13 @@ import java.time.temporal.ChronoUnit;
 // 우리가 해야 할 일은 @Component를 붙여주는 일 뿐이다.
 @Component
 @ConfigurationProperties("jueun") // jueun이라는 키 값으로 프로퍼티 사용. getter/setter 필요
+@Validated // Properties 에 들어오는 값들을 검증할 수 있다.
 public class JueunProperties {
 
+    @NotEmpty
     private String name;
     private int age;
     private String fullName;
-
-
     private Duration sessionTimeout = Duration.ofSeconds(30);
 
     public Duration getSessionTimeout() {
