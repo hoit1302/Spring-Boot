@@ -21,7 +21,7 @@ public class JueunProperties {
     private int age;
     private String fullName;
 
-    @DurationUnit(ChronoUnit.SECONDS)
+
     private Duration sessionTimeout = Duration.ofSeconds(30);
 
     public Duration getSessionTimeout() {
