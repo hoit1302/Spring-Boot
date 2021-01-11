@@ -48,10 +48,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+<!--   response 객체에 부가적인 정보를 제공해주는 HAL Browser, 루트로 접속 -->
+<!--   링크 정보를 json 형태로 표현할 수 있는 표준 -->
+<!--   장점: rest 자원을 표시하기 위한 자료구조를 만들지 않아도 HATEOAS 기능을 사용할 수 있다는  -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-hal-browser</artifactId>
@@ -64,7 +68,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <scope>runtime</scope> <!-- 실행단계에서만 사용되기에 -->
         </dependency>
 
 <!--        <dependency>-->
