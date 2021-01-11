@@ -32,7 +32,8 @@ public class UserController {
 
     // GET /users/1 or /users/10 -> String
     @GetMapping("/users/{id}")
-    public Resource<User> retrieveUser(@PathVariable int id) { // String ㅡ> int (converting)
+    // String ㅡ> int (converting), 꼭 숫자여야 하기 때문에 이 부분에서 Vaildation check를 해보면 좋을 것 같다...
+    public Resource<User> retrieveUser(@PathVariable int id) {
         User user = service.findOne(id); // return service.findOne(id)에서 앞 코드로 바꾸는 refactor > Introduce Variable (ctrl+alt+V)
 
         if (user == null) {
@@ -47,9 +48,9 @@ public class UserController {
 
         return resource;
     }
-
+    // jdk에 포함된 API와 hibernate library에 포함된 validation 기능
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) { // User validation check 진행
         User savedUser = service.save(user);
 
         // ServletUriComponentsBuilder ㅡ> 현재 요청의 URI를 얻을 수 있다. 생성된 아이디값을 지정하여 URI 생성

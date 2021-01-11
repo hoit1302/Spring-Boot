@@ -42,9 +42,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
+
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(),
                 "Validation Failed", ex.getBindingResult().toString());
-
+        // "timestamp": new Date()
+        // "message": ex.getMessage() ㅡ> "Validation Failed" (중복되고 너무 길기 때문에 수정함)
+        // "details": ex.getBindingResult().toString() (@Size(message="") 메세지로 지정한 문자도 출력됨.)
         return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
