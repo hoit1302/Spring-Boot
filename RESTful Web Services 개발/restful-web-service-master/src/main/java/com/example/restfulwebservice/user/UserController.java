@@ -17,6 +17,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class UserController {
     private UserDaoService service;
 
+    // 의존성 주입은 setter 메소드나 생성자의 매개변수를 통해 가능한데, 여기선 생성자를 통해 주입했다.
+    // 더 간단하게 @Autowired를 사용할 수 있다.
+    // DEBUG 레벨의 log 에서 UserController 검색 후 아래의 메세지로 확인도 가능하다.
+    // 'userController' via constructor to bean named 'userDaoService'
     public UserController(UserDaoService service) {
         this.service = service;
     }
@@ -28,15 +32,16 @@ public class UserController {
 
     // GET /users/1 or /users/10 -> String
     @GetMapping("/users/{id}")
-    public Resource<User> retrieveUser(@PathVariable int id) {
-        User user = service.findOne(id);
+    public Resource<User> retrieveUser(@PathVariable int id) { // String ㅡ> int (converting)
+        User user = service.findOne(id); // return service.findOne(id)에서 앞 코드로 바꾸는 refactor > Introduce Variable (ctrl+alt+V)
 
         if (user == null) {
+            // UserNotFoundException: 직접 예외 클래스 생성.
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
 
         // HATEOAS
-        Resource<User>  resource = new Resource<>(user);
+        Resource<User> resource = new Resource<>(user);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         resource.add(linkTo.withRel("all-users"));
 
@@ -47,11 +52,14 @@ public class UserController {
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUser = service.save(user);
 
+        // ServletUriComponentsBuilder ㅡ> 현재 요청의 URI를 얻을 수 있다. 생성된 아이디값을 지정하여 URI 생성
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
 
+        // ResponseEntity: HTTP 상태 코드와 전송하고 싶은 데이터와 함께 전송할 수 있다.
+        // HTTP 201 Created는 요청이 성공적으로 처리되었으며, 자원이 생성되었음을 나타내는 성공 상태 응답 코드이다.
         return ResponseEntity.created(location).build();
     }
 
@@ -74,7 +82,7 @@ public class UserController {
         }
 
         // HATEOAS
-        Resource<User>  resource = new Resource<>(updatedUser);
+        Resource<User> resource = new Resource<>(updatedUser);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         resource.add(linkTo.withRel("all-users"));
 
