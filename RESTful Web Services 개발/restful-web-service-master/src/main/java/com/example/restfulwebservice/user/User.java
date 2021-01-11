@@ -22,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 //@JsonIgnoreProperties(value={"password", "ssn"}) // ㅡ> 이렇게 속성으로 줄 수도 있다.
 @NoArgsConstructor
-//@JsonFilter("UserInfo")
+@JsonFilter("UserInfo")
 @ApiModel(description = "사용자 상세 정보를 위한 도메인 객체")
 @Entity
 public class User {
@@ -36,10 +36,8 @@ public class User {
     @Past // 과거 날짜만 가능하다는 제약 조건.
     @ApiModelProperty(notes = "사용자의 등록일을 입력해 주세요.")
     private Date joinDate;
-    @JsonIgnore // 클라이언트에게 보여주지 마세요
     @ApiModelProperty(notes = "사용자의 패스워드를 입력해 주세요.")
     private String password;
-    @JsonIgnore
     @ApiModelProperty(notes = "사용자의 주민번호를 입력해 주세요.")
     private String ssn;
 

@@ -48,14 +48,15 @@ public class AdminUserController {
         if (user == null) {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
-
+        // 빈의 프로퍼티 제어
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-                .filterOutAllExcept("id", "name", "password", "ssn");
+                .filterOutAllExcept("id", "name", "password", "ssn"); // 포함시키고자하는 필터
 
+        // User에 @JsonFilter("UserInfo") 지정해둠.
         FilterProvider filters = new SimpleFilterProvider().addFilter("UserInfo", filter);
 
         MappingJacksonValue mapping = new MappingJacksonValue(user);
-        mapping.setFilters(filters);
+        mapping.setFilters(filters); // 정의해둔 필터 지정
 
         return mapping;
     }
