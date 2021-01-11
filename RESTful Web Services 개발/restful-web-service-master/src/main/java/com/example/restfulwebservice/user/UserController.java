@@ -41,13 +41,17 @@ public class UserController {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
 
-        // HATEOAS
+        // HATEOAS: 현재 리소스와 연관된 (호출 가능한) 자원 상태 성보를 제공
+        // Hypermedia As the Engine Of Application State
+        // Resource ㅡ> EntityModel, ControllerLinkBuilder ㅡ> WebMvcLinkBuilder (version 2.1.8 ㅡ> 2.2)
+        // retrieveAllUsers() 메서드를 all-users로 href 연결
         Resource<User> resource = new Resource<>(user);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         resource.add(linkTo.withRel("all-users"));
 
-        return resource;
+        return resource; // user 객체와 링크를 전달
     }
+
     // jdk에 포함된 API와 hibernate library에 포함된 validation 기능
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) { // User validation check 진행

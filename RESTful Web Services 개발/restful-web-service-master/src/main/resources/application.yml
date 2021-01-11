@@ -1,13 +1,14 @@
 server:
   port: 8088
 
-logging:
-  level:
-    org.springframework: DEBUG
+#logging:
+#  level:
+#    org.springframework: DEBUG
 
 spring:
   jpa:
     show-sql: true
+    # 쿼리 log 파일에 출력
   messages:
     basename: messages
     # 다국어 사용할 파일 이름: messages
