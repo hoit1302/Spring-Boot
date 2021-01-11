@@ -37,11 +37,11 @@ public class AdminUserController {
         return mapping;
     }
 
-    // GET /admin/users/1 -> /admin/v1/users/1
+// GET /admin/users/1 -> /admin/v1/users/1 (이거하는 중)
 //    @GetMapping("/v1/users/{id}")
 //    @GetMapping(value = "/users/{id}/", params = "version=1")
 //    @GetMapping(value = "/users/{id}", headers="X-API-VERSION=1")
-    @GetMapping(value = "/users/{id}", produces = "application/vnd.company.appv1+json")
+    @GetMapping(value = "/v1/users/{id}")
     public MappingJacksonValue retrieveUserV1(@PathVariable int id) {
         User user = service.findOne(id);
 
@@ -64,7 +64,7 @@ public class AdminUserController {
 //    @GetMapping("/v2/users/{id}")
 //    @GetMapping(value = "/users/{id}/", params = "version=2")
 //    @GetMapping(value = "/users/{id}", headers="X-API-VERSION=2")
-    @GetMapping(value = "/users/{id}", produces = "application/vnd.company.appv2+json")
+    @GetMapping(value = "/v2/users/{id}")
     public MappingJacksonValue retrieveUserV2(@PathVariable int id) {
         User user = service.findOne(id);
 
@@ -72,9 +72,10 @@ public class AdminUserController {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
 
-        // User -> UserV2
+        // 반환받은 User의 id, name, joinDate, password, ssn 프로퍼티들
+        // UserV2에 복사!
         UserV2 userV2 = new UserV2();
-        BeanUtils.copyProperties(user, userV2); // id, name, joinDate, password, ssn
+        BeanUtils.copyProperties(user, userV2);
         userV2.setGrade("VIP");
 
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
