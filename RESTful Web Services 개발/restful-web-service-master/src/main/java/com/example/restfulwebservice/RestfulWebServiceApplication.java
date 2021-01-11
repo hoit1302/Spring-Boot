@@ -16,6 +16,7 @@ public class RestfulWebServiceApplication {
         SpringApplication.run(RestfulWebServiceApplication.class, args);
     }
 
+    // 다국어 처리를 위한 Internationalization 구현 방법
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
