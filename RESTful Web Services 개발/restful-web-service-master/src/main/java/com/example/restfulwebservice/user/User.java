@@ -24,20 +24,24 @@ import java.util.List;
 @NoArgsConstructor
 @JsonFilter("UserInfo")
 @ApiModel(description = "사용자 상세 정보를 위한 도메인 객체")
-@Entity
+@Entity // 해당하는 클래스 이름의 테이블을 생성, 필드들이 컬럼 정보
 public class User {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue // 자동으로 생성되는 값
     private Integer id;
 
     @Size(min=2, message = "Name은 2글자 이상 입력해 주세요.")
     @ApiModelProperty(notes = "사용자 이름을 입력해 주세요.")
     private String name;
+
     @Past // 과거 날짜만 가능하다는 제약 조건.
     @ApiModelProperty(notes = "사용자의 등록일을 입력해 주세요.")
     private Date joinDate;
+
     @ApiModelProperty(notes = "사용자의 패스워드를 입력해 주세요.")
     private String password;
+
     @ApiModelProperty(notes = "사용자의 주민번호를 입력해 주세요.")
     private String ssn;
 

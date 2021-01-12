@@ -24,20 +24,21 @@ public class UserJpaController {
     @Autowired
     private PostRepository postRepository;
 
-    // http://localhost:8088/jpa/users or http://localhost:8088/users
+    // http://localhost:8088/jpa/users
     @GetMapping("/users")
     public List<User> retrieveAllUsers() {
-        return userRepository.findAll();
+        return userRepository.findAll(); // 우와!
     }
 
     @GetMapping("/users/{id}")
     public Resource<User> retrieveUser(@PathVariable int id) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userRepository.findById(id); // 반환값 주의
 
         if (!user.isPresent()) {
             throw new UserNotFoundException(String.format("ID[%s} not found", id));
         }
-
+        // 사용자 찾은 경우, HATEOAS
+        // 반환하고하자는 User객체에 retrieveAllUsers() 관련 링크를 추가
         Resource<User> resource = new Resource<>(user.get());
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         resource.add(linkTo.withRel("all-users"));
@@ -69,13 +70,14 @@ public class UserJpaController {
 
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id) {
-        userRepository.deleteById(id);
+        userRepository.deleteById(id); // 기본키 id로 삭제를 진행하기에, 재정의 작업 X
     }
 
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUser = userRepository.save(user);
 
+        // 반환할 URI 생성 후
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedUser.getId())

@@ -11,8 +11,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // h2-console 요청은 permission 허용
         http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
-        http.csrf().disable();
+        http.csrf().disable(); // Cross-site request forgery 사용 안함
         http.headers().frameOptions().disable();
     }
 

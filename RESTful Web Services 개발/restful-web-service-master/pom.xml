@@ -71,6 +71,8 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope> <!-- 실행단계에서만 사용되기에 -->
         </dependency>
+<!--        org.h2.Driver-->
+<!--        jdbc:h2:mem:testdb (memorydb: application이 실행되는 동안에만 유지됨)-->
 
 <!--        <dependency>-->
 <!--            <groupId>com.fasterxml.jackson.dataformat</groupId>-->

@@ -15,7 +15,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
-    private UserDaoService service;
+    private final UserDaoService service;
 
     // 의존성 주입은 setter 메소드나 생성자의 매개변수를 통해 가능한데, 여기선 생성자를 통해 주입했다.
     // 더 간단하게 @Autowired를 사용할 수 있다.
