@@ -14,11 +14,12 @@ spring:
     # 다국어 사용할 파일 이름: messages
   security:
     user:
-      name: username
-      password: passw0rd
+      name: username # id
+      password: passw0rd # password
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+        # actuator, 더 다양한 정보 볼 수 있음
