@@ -163,3 +163,65 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 - **이름 기반** -> 코드 가독성과 유지보수를 위해 이름 기반 파라미터 바인딩을 사용하자!
 - 위치 기반 -> no..!
 
+#### 반환 타입
+spring data JPA는 유연한 반환 타입을 지원한다.
+``` java
+List<Member> findByUsername(String name); //컬렉션
+/* 결과가 없을 땐 null이 아닌 빈 컬렉션을 반환함 */
+
+Member findByUsername(String name); //단건
+/* 결과가 없을 땐 null을 반환하지만 결과 2건 이상일 경우 예외 발생 */
+
+Optional<Member> findByUsername(String name); //단건 Optional
+/* empty(), orElse() 지원, 결과 2건 이상일 경우 예외 발생 */
+```
+
+## [메인2] 페이징과 정렬
+
+### 사용 예
+``` java
+public interface MemberRepository extends Repository<Member, Long> {
+    /* 중복된 이름으로 메서드를 선언할 수 없다. 편의상 같은 이름으로 써두었다. */
+    Page<Member> findByAge(int age, Pageable pageable); //count 쿼리 사용 
+    Slice<Member> findByAge(int age, Pageable pageable); //count 쿼리 사용 안함
+    List<Member> findByAge(int age, Pageable pageable); //count 쿼리 사용 안함
+    List<Member> findByAge(int age, Sort sort);
+}
+```
+```java
+PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username")); // 현재 페이지, 조회할 데이터 수, 추가적으로 정렬 정보
+Page<Member> page = memberRepository.findByAge(10, pageRequest); // 위 인터페이스에서 첫번째 메서드 활용 시
+
+// 아래의 모든 메서드 사용 가능
+List<Member> content = page.getContent(); //조회된 데이터 
+assertThat(content.size()).isEqualTo(3); //조회된 데이터 수 
+assertThat(page.getNumber()).isEqualTo(0); //페이지 번호
+assertThat(page.isFirst()).isTrue(); //첫번째 항목인가? 
+assertThat(page.hasNext()).isTrue(); //다음 페이지가 있는가?
+/* 아래의 메서드는 page를 반환 타입으로 가져, count query를 날리기 때문에 가능 */
+assertThat(page.getTotalElements()).isEqualTo(5); //전체 데이터 수
+assertThat(page.getTotalPages()).isEqualTo(2); //전체 페이지 번호 
+```
+### 파라미터
+- `org.springframework.data.domain.Sort` : 정렬 기능 
+- `org.springframework.data.domain.Pageable` : 페이징 기능 (내부에 Sort 포함)
+### 반환 타입
+- `org.springframework.data.domain.Page` : 추가 count 쿼리 결과를 포함하는 페이징 
+- `org.springframework.data.domain.Slice` : 추가 count 쿼리 없이 다음 페이지만 확인 가능 (내부적으로 limit + 1조회)
+- `List` (자바 컬렉션): 추가 count 쿼리 없이 결과만 반환
+
+
+두 번째 파라미터로 받은 Pagable 은 인터페이스다. 따라서 실제 사용할 때는 해당 인터페이스를 구현한 `org.springframework.data.domain.PageRequest` 객체를 사용한다.
+
+페이지는 0부터 시작한다 !
+
+### count query 분리
+``` java
+@Query(value = “select m from Member m”, 
+       countQuery = “select count(m.username) from Member m”)
+Page<Member> findMemberAllCountBy(Pageable pageable);
+```
+### 페이지를 유지하면서 엔티티를 DTO로 변환
+```java
+Page<MemberDto> dtoPage = page.map(m -> new MemberDto());
+```
