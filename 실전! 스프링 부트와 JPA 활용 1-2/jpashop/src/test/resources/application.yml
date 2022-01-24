@@ -1,0 +1,21 @@
+# in memory db로 main과 다른 db로 손쉽게 test할 수 있다.
+# local로 띄우지 않아도 된다.
+spring:
+  datasource:
+    url: jdbc:h2:mem:test # 하지만 이 설정이 없어도 스프링부트가 알아서 메모리 mode로 돌린다.
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create # (지우고 다시) 생성
+      # spring boot 는 기본적으로 create-drop으로 동작한다.
+    properties:
+      hibernate:
+        #        show_sql: true # system.out 을 쓰기 때문에 X
+        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug # 로거를 통해 보는 것이 맞음
+# org.hibernate.type: trace
