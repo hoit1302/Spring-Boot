@@ -1,9 +1,6 @@
 package me.whiteship.demospringsecurityform.config;
 
-import me.whiteship.demospringsecurityform.account.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,6 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//	and로 모두 이어붙일 수도 있고, 따로 작성할 수도 있음.
 //		... .anyRequest().authenticated().and().formLogin(). ...
 		http.formLogin();
+//		http.formLogin().successForwardUrl().passwordParameter() ... 등 formLogin와 관련된 설정을 바꿀 수 있음.
+// 		이와 관련된 테스트를 AccountControllerTest form 부분에서 보여줌.
 		http.httpBasic();
 	}
 //  이렇게 명시적으로 설정하지 않아도 UserDetailsService 타입의 빈이 등록만 되어 있으면 가져다가 쓰게 됨.

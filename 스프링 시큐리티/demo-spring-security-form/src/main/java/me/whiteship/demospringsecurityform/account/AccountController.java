@@ -19,4 +19,8 @@ public class AccountController {
 		return accountService.createNew(account); // 저장되는 값을 JSON으로 보여줌. RestController니.
 	}
 
+
+	// 회원가입의 경우, spring security 기능과 크게 관련이 없음.
+	// password encoding만 잘하면 됨.
+	// 브라우저에서 form 인증 말고, HTTP BASIC 인증 이라는 스펙이 있음. http 헤더에 특정한 값을 넣어 요청을 보내는. > HTTPS 를 써야함.
 }
